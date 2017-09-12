@@ -6,20 +6,24 @@ import "rxjs/add/operator/map";
 export class SpotifyService {
 
   artistas:any[]=[];
+
   urlBusqueda:string = "https://api.spotify.com/v1/search";
+  urlArtista:string = "https://api.spotify.com/v1/artists";
 
   constructor(private http:Http) { }
 
   getArtistas(termino:string){
     let headers = new Headers();
 
-    headers.append('authorization','Bearer BQCoLX_v3QASCm_WWxkSdy_ggD4fY_PV8HNFd0I1-kfLM_JvL4_ugrGcElwzzGS2TgsNQ1OaB-kuFge9DDVNbQ');
+    headers.append('authorization','Bearer BQCVdZutHQfWc6W8jjeERbH4t9vFTZ6VdE8154dfrxTOleOD7pKpZZ_zhpjSEUHatE80zzJGo3KpIaCORmJpHg');
 
-    let query = `?q=${termino}&type=artist`
+    let query = `?q=${termino}&type=artist`;
     let url = this.urlBusqueda+query;
 
     return this.http.get(url,{headers}).map(res =>{
-      console.log(res);
+      //console.log(res.json());
+      this.artistas=res.json().artists.items;
+      //console.log(this.artistas);
     })
   }
 
