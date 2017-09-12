@@ -14,16 +14,33 @@ export class SpotifyService {
 
   getArtistas(termino:string){
     let headers = new Headers();
-
-    headers.append('authorization','Bearer BQCVdZutHQfWc6W8jjeERbH4t9vFTZ6VdE8154dfrxTOleOD7pKpZZ_zhpjSEUHatE80zzJGo3KpIaCORmJpHg');
-
+    headers.append('authorization','Bearer BQCzEKg3Q0REPH0qR_pJKDOKyTjlbejAeYjrf7GAA1RiLeVgPE6MIdNGZ9wAB0GNmpa-zdPlFi9-ErEPzkhNBg');
     let query = `?q=${termino}&type=artist`;
     let url = this.urlBusqueda+query;
-
     return this.http.get(url,{headers}).map(res =>{
-      //console.log(res.json());
       this.artistas=res.json().artists.items;
-      //console.log(this.artistas);
+    })
+  }
+
+  getArtista(id:string){
+    let headers = new Headers();
+    headers.append('authorization','Bearer BQCzEKg3Q0REPH0qR_pJKDOKyTjlbejAeYjrf7GAA1RiLeVgPE6MIdNGZ9wAB0GNmpa-zdPlFi9-ErEPzkhNBg');
+    let query = `/${id}`;
+    let url = this.urlArtista+query;
+    return this.http.get(url,{headers}).map(res =>{
+      console.log(res.json());
+      return res.json();
+    })
+  }
+
+  getTop(id:string){
+    let headers = new Headers();
+    headers.append('authorization','Bearer BQCzEKg3Q0REPH0qR_pJKDOKyTjlbejAeYjrf7GAA1RiLeVgPE6MIdNGZ9wAB0GNmpa-zdPlFi9-ErEPzkhNBg');
+    let query = `/${id}/top-tracks?country=US`;
+    let url = this.urlArtista+query;
+    return this.http.get(url,{headers}).map(res =>{
+      console.log(res.json().tracks);
+      return res.json().tracks;
     })
   }
 
