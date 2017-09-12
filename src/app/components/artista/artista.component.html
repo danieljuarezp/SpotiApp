@@ -1,32 +1,34 @@
-<div class="container">
+<div class="container" *ngIf="artista">
 <div class="row top-30">
 <div class="col-md-3">
-<img [src]="artista.images | sinfoto" class="imf-fluid img-thumbnail">
+<img [src]="artista.images | sinfoto" class="imf-fluid img-thumbnail img-circle">
 </div>
 <div class="col-md-9">
 <h1 class="text-center">
-    {{artista.name}}
+    {{artista.name}} 
 </h1>
 <hr>
 <div class="text-center">
 <button class="btn btn-outline-danger" [routerLink]="['/buscar']">
     Regresar a la busqueda
 </button>
-<button class="btn btn-outline-success">
-        Abrir en Spotify
-</button>
+<a class="btn btn-outline-success" [href]="artista.external_urls?.spotify" target="_blank">
+Abrir en Spotify
+</a>
 </div>
 </div>
 </div>
 <br>
 <h1 class="text-center">Top Tracks</h1>
 <br>
-<div class="row">
+<div class="row" *ngIf="top">
 <div class="text-center" *ngFor="let item of top">
 <div class="col-md-12">
     <ul>
         <li>
                 <img [src]="item.album.images | sinfoto" class="imf-fluid img-thumbnail">
+                <br>
+                <iframe [src]="item.uri |domseguro:'https://open.spotify.com/embed?uri='" width="250" height="80" frameborder="0" allowtransparency="true"></iframe>
                 <hr>
                 <p>{{item.name}}</p>
         </li>

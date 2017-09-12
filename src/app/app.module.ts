@@ -12,6 +12,7 @@ import {APP_ROUTING} from "./app.routes";
 
 import {SpotifyService}  from "./services/spotify.service";
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
+import {DomseguroPipe} from "./pipes/domseguro.pipe";
 import { ArtistaComponent } from './components/artista/artista.component';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ArtistaComponent } from './components/artista/artista.component';
     SearchComponent,
     NavbarComponent,
     SinfotoPipe,
-    ArtistaComponent
+    ArtistaComponent,
+    DomseguroPipe
   ],
   imports: [
     BrowserModule,
